@@ -90,6 +90,55 @@
       box-shadow: var(--glow-cyan);
     }
 
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    
+    .skill-group {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 18px 20px;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .skill-group::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--neon-green);
+      box-shadow: var(--glow-green);
+      border-radius: 2px 0 0 2px;
+    }
+    
+    .skill-group:hover {
+      border-color: rgba(57,255,20,0.4);
+      box-shadow: 0 0 20px rgba(57,255,20,0.05);
+    }
+    
+    .skill-heading {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--neon-green);
+      text-shadow: var(--glow-green);
+      margin-bottom: 10px;
+    }
+    
+    .skill-tags {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      letter-spacing: 0.5px;
+    }
+    
     /* ── SECTION LABEL ── */
     .section-label {
       display: flex; align-items: center; gap: 12px;
@@ -212,16 +261,32 @@
       Building systems that watch, protect, and scale.<span class="cursor-blink"></span>
     </p>
   </header>
-
-  <div class="section-label">
-    <span>TECHNICAL SKILLS</span>
-    <p class="subtitle">
-      AWS • Virtual Machines • Linux Server Administration • Network Architecture<br/>
-    </p>  
-  </div>
   
   <div class="section-label">
-    <span>PROJECTS &amp; ROLES</span>
+    <span>Technical Skills</span>
+  </div>
+  
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h2 class="skill-heading">Cloud &amp; Infrastructure</h2>
+      <p class="skill-tags">AWS • Virtual Machines • Linux Server Administration • Network Architecture</p>
+    </div>
+    <div class="skill-group">
+      <h2 class="skill-heading">Cybersecurity &amp; Monitoring</h2>
+      <p class="skill-tags">Elastic Stack • SIEM Concepts • Honeypot Systems • Threat Monitoring</p>
+    </div>
+    <div class="skill-group">
+      <h2 class="skill-heading">Programming &amp; Tools</h2>
+      <p class="skill-tags">Python • Java • Docker • Git • Nginx</p>
+    </div>
+    <div class="skill-group">
+      <h2 class="skill-heading">Networking</h2>
+      <p class="skill-tags">Subnetting • DNS • Reverse Proxy • Secure Networking</p>
+    </div>
+  </div>
+  
+  <div class="section-label" style="margin-top: 56px;">
+    <span>Projects &amp; Roles</span>
   </div>
 
   <div class="sort-bar">
