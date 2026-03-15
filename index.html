@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
+  <title>Portfolio – Kiricheat Meas</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -12,12 +12,14 @@
       --neon-cyan:  #00ffe7;
       --neon-green: #39ff14;
       --neon-pink:  #ff2d78;
+      --neon-blue:  #1a8cff;
       --text:       #c8d8e8;
       --text-dim:   #5a7a9a;
       --border:     rgba(0,255,231,0.25);
       --glow-cyan:  0 0 8px #00ffe7, 0 0 20px rgba(0,255,231,0.3);
       --glow-green: 0 0 8px #39ff14, 0 0 20px rgba(57,255,20,0.3);
       --glow-pink:  0 0 8px #ff2d78, 0 0 20px rgba(255,45,120,0.3);
+      --glow-blue:  0 0 8px #1a8cff, 0 0 20px rgba(26,140,255,0.3);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,7 +43,7 @@
       pointer-events: none; z-index: 9999;
     }
 
-    /* grid */
+    /* grid bg */
     body::after {
       content: '';
       position: fixed; inset: 0;
@@ -60,7 +62,7 @@
     }
 
     /* ── HEADER ── */
-    header { margin-bottom: 64px; animation: fadeDown 0.6s ease both; }
+    header { margin-bottom: 48px; animation: fadeDown 0.6s ease both; }
 
     .header-tag {
       font-size: 11px; letter-spacing: 4px;
@@ -68,14 +70,28 @@
       margin-bottom: 12px; opacity: 0.7;
     }
 
+    .header-name-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    }
+
     h1 {
       font-family: 'Orbitron', monospace;
-      font-size: clamp(28px, 6vw, 52px);
+      font-size: clamp(24px, 5vw, 46px);
       font-weight: 900; line-height: 1.1;
       color: #fff; text-shadow: var(--glow-cyan); letter-spacing: -1px;
     }
 
     h1 span { color: var(--neon-cyan); }
+
+    .header-name {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(13px, 2.5vw, 18px);
+      font-weight: 400;
+      color: var(--text-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
     .subtitle {
       margin-top: 16px; color: var(--text-dim);
@@ -90,55 +106,57 @@
       box-shadow: var(--glow-cyan);
     }
 
-    /* ── SKILLS GRID ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 8px;
+    /* ── STAT COUNTER ROW ── */
+    .stats-row {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s 0.15s ease both;
     }
-    
-    .skill-group {
-      background: var(--bg2);
+
+    .stat-box {
       border: 1px solid var(--border);
       border-radius: 2px;
-      padding: 18px 20px;
+      padding: 16px 24px;
+      background: var(--bg2);
       position: relative;
+      min-width: 120px;
+      text-align: center;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    
-    .skill-group::before {
+
+    .stat-box::before {
       content: '';
-      position: absolute; top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--neon-green);
-      box-shadow: var(--glow-green);
-      border-radius: 2px 0 0 2px;
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+      border-radius: 0 0 2px 2px;
     }
-    
-    .skill-group:hover {
-      border-color: rgba(57,255,20,0.4);
-      box-shadow: 0 0 20px rgba(57,255,20,0.05);
+
+    .stat-box:hover {
+      border-color: rgba(0,255,231,0.5);
+      box-shadow: 0 0 20px rgba(0,255,231,0.06);
     }
-    
-    .skill-heading {
+
+    .stat-number {
       font-family: 'Orbitron', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--neon-green);
-      text-shadow: var(--glow-green);
-      margin-bottom: 10px;
+      font-size: 28px; font-weight: 900;
+      color: var(--neon-cyan);
+      text-shadow: var(--glow-cyan);
+      line-height: 1;
+      display: block;
     }
-    
-    .skill-tags {
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.7;
-      letter-spacing: 0.5px;
+
+    .stat-label {
+      font-size: 10px; letter-spacing: 2px;
+      color: var(--text-dim); text-transform: uppercase;
+      margin-top: 6px; display: block;
     }
-    
+
+    /* ongoing dot */
+    .stat-box.ongoing .stat-number { color: var(--neon-green); text-shadow: var(--glow-green); }
+    .stat-box.ongoing::before { background: var(--neon-green); box-shadow: var(--glow-green); }
+
     /* ── SECTION LABEL ── */
     .section-label {
       display: flex; align-items: center; gap: 12px;
@@ -154,6 +172,49 @@
     .section-label::after {
       content: ''; flex: 1; height: 1px;
       background: linear-gradient(90deg, rgba(57,255,20,0.4), transparent);
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .skill-group {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 16px 20px 16px 24px;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-group::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--neon-green); box-shadow: var(--glow-green);
+      border-radius: 2px 0 0 2px;
+    }
+
+    .skill-group:hover {
+      border-color: rgba(57,255,20,0.35);
+      box-shadow: 0 0 20px rgba(57,255,20,0.05);
+    }
+
+    .skill-heading {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--neon-green); text-shadow: var(--glow-green);
+      margin-bottom: 8px;
+    }
+
+    .skill-tags {
+      font-size: 12px; color: var(--text-dim);
+      line-height: 1.7; letter-spacing: 0.5px;
     }
 
     /* ── SORT BAR ── */
@@ -203,7 +264,7 @@
     .card-header {
       display: flex; align-items: baseline;
       justify-content: space-between; flex-wrap: wrap;
-      gap: 8px; margin-bottom: 18px;
+      gap: 8px; margin-bottom: 16px;
     }
 
     .card-title {
@@ -231,10 +292,112 @@
       color: var(--neon-cyan); font-size: 11px; top: 2px;
     }
 
+    /* ── CARD MEDIA (images) ── */
+    .card-media {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .card-media a {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      max-width: 200px;
+    }
+
+    .card-media a:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .card-media img {
+      display: block;
+      width: 200px; max-width: 100%;
+      height: 120px; object-fit: cover;
+      filter: saturate(0.8) brightness(0.9);
+      transition: filter 0.3s;
+    }
+
+    .card-media a:hover img {
+      filter: saturate(1.1) brightness(1);
+    }
+
+    .card-media .media-caption {
+      font-size: 10px; letter-spacing: 1px;
+      color: var(--text-dim); text-transform: uppercase;
+      padding: 6px 8px;
+      background: rgba(0,0,0,0.4);
+    }
+
+    /* ── CARD LINKS ── */
+    .card-links {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--neon-blue);
+      border: 1px solid rgba(26,140,255,0.3);
+      padding: 6px 12px; border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .card-link:hover {
+      color: var(--bg);
+      background: var(--neon-blue);
+      border-color: var(--neon-blue);
+      box-shadow: var(--glow-blue);
+    }
+
+    .card-link .link-icon { font-size: 13px; line-height: 1; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(5,8,16,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center; justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      border: 1px solid var(--border);
+      box-shadow: var(--glow-cyan), 0 40px 80px rgba(0,0,0,0.8);
+      border-radius: 2px;
+      animation: modalIn 0.2s ease both;
+    }
+
+    .lightbox-close {
+      position: fixed; top: 20px; right: 24px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px; letter-spacing: 2px;
+      color: var(--text-dim); background: transparent;
+      border: 1px solid rgba(0,255,231,0.2);
+      padding: 6px 14px; cursor: pointer; border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--neon-cyan); border-color: var(--neon-cyan);
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
     @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeUp   { from{opacity:0;transform:translateY(16px)}  to{opacity:1;transform:translateY(0)} }
+    @keyframes modalIn  { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
     @keyframes swapFlash {
       0%   { background: rgba(0,255,231,0.08); }
       100% { background: var(--bg2); }
@@ -246,6 +409,9 @@
     @media (max-width: 540px) {
       .card { padding: 20px 18px; }
       .card-header { flex-direction: column; gap: 4px; }
+      .stats-row { gap: 12px; }
+      .stat-box { min-width: 90px; padding: 12px 16px; }
+      .stat-number { font-size: 22px; }
     }
   </style>
 </head>
@@ -253,20 +419,29 @@
 
 <div class="container">
 
+  <!-- HEADER -->
   <header>
     <p class="header-tag">// portfolio.v1</p>
-    <h1><span>Technical Portfolio</span></h1><h4> | KIRICHEAT MEAS<h4> 
-    
+    <div class="header-name-row">
+      <h1><span>Technical Portfolio</span></h1>
+      <span class="header-name">| Kiricheat Meas</span>
+    </div>
     <p class="subtitle">
       Security, Cloud Computing, &amp; Infrastructure<br/>
       Building systems that watch, protect, and scale.<span class="cursor-blink"></span>
     </p>
   </header>
-  
-  <div class="section-label">
+
+  <!-- STATS -->
+  <div class="stats-row" id="stats-row">
+    <!-- filled by JS -->
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section-label" style="margin-top: 0;">
     <span>Technical Skills</span>
   </div>
-  
+
   <div class="skills-grid">
     <div class="skill-group">
       <h2 class="skill-heading">Cloud &amp; Infrastructure</h2>
@@ -285,7 +460,8 @@
       <p class="skill-tags">Subnetting • DNS • Reverse Proxy • Secure Networking</p>
     </div>
   </div>
-  
+
+  <!-- PROJECTS -->
   <div class="section-label" style="margin-top: 56px;">
     <span>Projects &amp; Roles</span>
   </div>
@@ -301,13 +477,22 @@
 
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕ close</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
 <script>
-  // ╔══════════════════════════════════════════════════════════════╗
-  // ║  TO ADD OR EDIT A PROJECT:                                   ║
-  // ║  1. Update the SOURCE array below                           ║
-  // ║  2. Push to GitHub                                          ║
-  // ║  3. Vercel auto-deploys in ~30 seconds                      ║
-  // ╚══════════════════════════════════════════════════════════════╝
+  // ╔══════════════════════════════════════════════════════════════════════╗
+  // ║  TO ADD OR EDIT A PROJECT:                                           ║
+  // ║  1. Update the SOURCE array below                                   ║
+  // ║  2. Each entry supports optional fields:                            ║
+  // ║     - links: [ { label, url, icon } ]   → button links per card    ║
+  // ║     - images: [ { src, caption, url } ] → thumbnail images         ║
+  // ║       (caption/url are optional on images)                          ║
+  // ║  3. Push to GitHub → Vercel auto-deploys in ~30 seconds            ║
+  // ╚══════════════════════════════════════════════════════════════════════╝
 
   const SOURCE = [
     {
@@ -320,6 +505,13 @@
         "Configured Cloudflare Tunnel and DNS to expose services securely",
         "Implemented centralized log storage via Cloudflare R2",
         "Planned integration of the Elastic SIEM platform for threat detection and analysis",
+      ],
+      // ── EXAMPLE: add your GitHub link and a screenshot image below ──
+      links: [
+        // { label: "GitHub", url: "https://github.com/yourname/honeypot", icon: "⌥" },
+      ],
+      images: [
+        // { src: "images/honeypot-screenshot.png", caption: "Dashboard", url: "https://github.com/yourname/honeypot" },
       ]
     },
     {
@@ -327,14 +519,19 @@
       title: "AWS Mini SME-Infrastructure Level Setup",
       date: "Dec 2025 – Feb 2026",
       bullets: [
-        "This project is self-created and deployed in the AWS Cloud.",
-        "Designed and deployed a secure cloud infrastructure environment on AWS, simulating a small to medium enterprise architecture.",
+        "Self-created and deployed in the AWS Cloud to simulate a small-to-medium enterprise architecture.",
         "Deployed multiple EC2 instances configured with an Nginx reverse proxy architecture",
         "Designed network architecture with VPC, subnets, Internet Gateway, NAT Gateway, and Elastic IPs",
         "Implemented segmented network design separating public production systems and private security infrastructure",
         "Configured AWS RDS databases and S3 object storage for application and metadata management",
         "Implemented Elastic Security monitoring agents across all instances for centralized logging and security monitoring",
         "Hardened Linux servers through access controls, firewall configuration, and service isolation",
+      ],
+      links: [
+        // { label: "Architecture Diagram", url: "https://...", icon: "◈" },
+      ],
+      images: [
+        // { src: "images/aws-architecture.png", caption: "VPC Architecture" },
       ]
     },
     {
@@ -342,11 +539,13 @@
       title: "Modified CTFd Framework",
       date: "Dec 2025 – Jan 2026",
       bullets: [
-        "Configured 2 Ubuntu VMs for this project. 1 Ubuntu VM is for the main server, another VM is used for setting up the dynamic ports and SSL certifications.",
-        "The Main Server Ubuntu VM, I configured using Docker containers, a CTFd Python plugin, and hosting a CTFd web interface. I configured the docker.yml and the Python plugin files to make sure it talks to the other Ubuntu VM, for requesting the dynamic ports for the dynamic instances",
-        "The Dynamic Port Ubuntu VM, I installed Docker and created self-SSL certifications. I configured the docker.yml file to allow dynamic ports and listening on a specific port, requesting from the Server Ubuntu VM.",
-        "Note: I used the free version of the CTFd Framework. Not the enterprise version."
-      ]
+        "Configured 2 Ubuntu VMs: one for the main CTFd server, one for dynamic port allocation and SSL.",
+        "Main server: Dockerized CTFd with a custom Python plugin to coordinate dynamic challenge instances with the second VM.",
+        "Dynamic port VM: configured Docker with self-signed SSL and a listener for instance provisioning requests.",
+        "Note: Used the free (open-source) version of CTFd, not the enterprise version.",
+      ],
+      links: [],
+      images: []
     },
     {
       id: 4,
@@ -354,21 +553,44 @@
       date: "Dec 2025 – Present",
       bullets: [
         "Configured on-premise and cloud virtual machines for CTF challenges",
-        "Implemented CoreDNS for internal network resolution",
-        "Integrated Cloudflare DNS, API Tokens, and Tailscale secure networking",
-        "Coordinated technical infrastructure between student teams and university IT department", 
-      ]
+        "Implemented CoreDNS for internal LAN name resolution",
+        "Integrated Cloudflare DNS, API Tokens, and Tailscale for secure networking",
+        "Coordinated technical infrastructure between the CTF Club, IT manager, and Head of IT at AUPP",
+      ],
+      links: [
+        // { label: "Club Page", url: "https://...", icon: "⊕" },
+      ],
+      images: []
     }
   ];
 
   // ── STATE ──
-  let entries  = SOURCE.map(e => ({ ...e, bullets: [...e.bullets] }));
+  let entries  = SOURCE.map(e => ({ ...e, bullets: [...e.bullets], links: [...(e.links||[])], images: [...(e.images||[])] }));
   let sortMode = 'manual';
 
+  // ── STATS ──
+  function renderStats() {
+    const total   = entries.length;
+    const ongoing = entries.filter(e => /present/i.test(e.date)).length;
+    const done    = total - ongoing;
+
+    document.getElementById('stats-row').innerHTML = `
+      <div class="stat-box">
+        <span class="stat-number">${total}</span>
+        <span class="stat-label">Total Projects</span>
+      </div>
+      <div class="stat-box ongoing">
+        <span class="stat-number">${ongoing}</span>
+        <span class="stat-label">Ongoing</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">${done}</span>
+        <span class="stat-label">Completed</span>
+      </div>
+    `;
+  }
+
   // ── DATE PARSING ──
-  // "Present" (or missing end) is treated as a very large number so it always
-  // sorts to the top on Newest and to the bottom on Oldest.
-  // When two entries both end at "Present", their start dates break the tie.
   const MONTHS = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
   const NOW = 999999;
 
@@ -387,7 +609,6 @@
 
   function parseRange(s) {
     if (!s) return { start: 0, end: 0 };
-    // Split on en-dash, em-dash, or plain hyphen surrounded by spaces
     const parts = s.split(/\s*[–—\-]\s*/);
     const start = parsePart(parts[0] || '');
     const end   = parsePart(parts[1] || parts[0] || '');
@@ -397,15 +618,11 @@
   function getSorted() {
     if (sortMode === 'manual') return [...entries];
     return [...entries].sort((a, b) => {
-      const da = parseRange(a.date);
-      const db = parseRange(b.date);
+      const da = parseRange(a.date), db = parseRange(b.date);
       if (sortMode === 'newest') {
-        // Primary: latest end date first
         if (db.end !== da.end) return db.end - da.end;
-        // Tiebreak: latest start date first (Dec beats Oct when both end at Present)
         return db.start - da.start;
       } else {
-        // Oldest first
         if (da.end !== db.end) return da.end - db.end;
         return da.start - db.start;
       }
@@ -437,19 +654,63 @@
 
       const bullets = entry.bullets.map(b => `<li>${esc(b)}</li>`).join('');
 
+      // images
+      let mediaHtml = '';
+      if (entry.images && entry.images.length > 0) {
+        const imgs = entry.images.map(img => {
+          const href = img.url ? esc(img.url) : img.src;
+          const caption = img.caption ? `<span class="media-caption">${esc(img.caption)}</span>` : '';
+          return `<a href="${esc(img.src)}" onclick="openLightbox(event,'${esc(img.src)}')" target="_blank" title="${img.caption || ''}">
+            <img src="${esc(img.src)}" alt="${esc(img.caption || entry.title)}" loading="lazy"/>
+            ${caption}
+          </a>`;
+        }).join('');
+        mediaHtml = `<div class="card-media">${imgs}</div>`;
+      }
+
+      // links
+      let linksHtml = '';
+      if (entry.links && entry.links.length > 0) {
+        const linkItems = entry.links.map(l =>
+          `<a class="card-link" href="${esc(l.url)}" target="_blank" rel="noopener">
+            <span class="link-icon">${l.icon || '⇗'}</span>${esc(l.label)}
+          </a>`
+        ).join('');
+        linksHtml = `<div class="card-links">${linkItems}</div>`;
+      }
+
       card.innerHTML = `
         <div class="card-header">
           <span class="card-title">${esc(entry.title)}</span>
           <span class="card-date">${esc(entry.date)}</span>
         </div>
         <ul>${bullets}</ul>
+        ${mediaHtml}
+        ${linksHtml}
       `;
 
       container.appendChild(card);
     });
   }
 
+  // ── LIGHTBOX ──
+  function openLightbox(e, src) {
+    e.preventDefault();
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
   // ── INIT ──
+  renderStats();
   renderCards(false);
 </script>
 </body>
