@@ -1,4 +1,7 @@
 # Adding Domain Name in Vercel
+**NOTE:**
+DO NOT BUY A DOMAIN FROM get.tech. They do not have Privacy Protection for free. You need to buy. Without privacy protection, you domain and URL link info is leaked on ICANN and WHOIS platforms. <br>
+If you want a domain, buy from CloudFlare or NameCheap.
 
 ## DNS Records in CloudFlare
 - A record pointing to `216.198.79.1` (You will be asked to use)
