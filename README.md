@@ -4,6 +4,7 @@
 - A record pointing to `216.198.79.1` (You will be asked to use)
 - CNAME pointing to `89c97d05cb7fddfb.vercel-dns-017.com`
 
+
 ## Set up name servers and DNS records via CloudFlare
 In Cloudflare, setup domain and setup its records. Copy the records above, and since it is in Vercel, you don't really need to turn on CloudFlare proxy. Vercel is already protecting you.
 
