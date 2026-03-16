@@ -41,7 +41,7 @@ Follow these steps in the Vercel Dashboard:
 - Check Name Servers: Make sure you actually updated the 4 name servers at get.tech to the 2 provided by Cloudflare.
 
 
-# Adding a Subdomain in DigitalOcean
+# Adding a Subdomain in DigitalOcean via CloudFlare
 Since your domain is managed by **Cloudflare** (Cloudflare Name Servers), you don't need to do anything inside DigitalOcean or `.tech` to create the subdomain. Everything happens inside your Cloudflare dashboard.
 
 Here is the step-by-step guide to setting up a subdomain (e.g., `dev.yourname.tech` or `app.yourname.tech`) for your new DigitalOcean Droplet.
