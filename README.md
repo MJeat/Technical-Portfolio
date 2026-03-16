@@ -119,13 +119,8 @@ server {
 ### A Quick Warning on SSL
 Since you are using Cloudflare, make sure your Cloudflare **SSL/TLS** setting (under the SSL/TLS tab) is set to **Full** or **Full (Strict)** if you install an SSL certificate on your Droplet. If it's set to "Flexible," you might run into "Too many redirects" errors.
 
-## 2.1. Why use CNAME for the Subdomain and an A record for the root domain?
-This is a great observation! You're seeing the difference between how the "Apex" (main) domain works versus how "Subdomains" work in the world of DNS.
-
-Here is why your setup changed and why you’re actually using the "better" method right now.
-
 ---
-
+## 2.1. Why use CNAME for the Subdomain and an A record for the root domain?
 ### 1. The Root Domain (Apex) Restriction
 
 When you set up `portfoliomkc.tech` (your main domain), you used an **A record**.
@@ -166,4 +161,3 @@ Here is exactly what those three records are doing for you:
 | **CNAME** | Subdomain (`sub.example.com`) | Flexible; points to a "name" (alias) that can change IPs behind the scenes. |
 | **TXT** | Verification | A "secret code" to prove you are the owner. |
 
-**Since your DNS is now working, would you like me to help you set up an automated "Redirect" in Vercel so that `www.profile` always sends people to `profile` (or vice versa)?**
