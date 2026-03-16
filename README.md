@@ -7,6 +7,10 @@ If you want a domain, buy from CloudFlare or NameCheap.
 - A record pointing to `216.198.79.1` (You will be asked to use)
 - CNAME pointing to `89c97d05cb7fddfb.vercel-dns-017.com`
 
+Use [DNSChecker](https://dnschecker.org/) for checking if your domain is up globally yet. 
+- Type in `www.portfoliomkc.tech` and select CNAME.
+- If you see Red Xs everywhere, Cloudflare hasn't pushed the update yet.
+- If you see Green Checks pointing to cname.vercel-dns.com, then Vercel is just being slow—give it 10 more minutes and hit verify again.
 
 ## Set up name servers and DNS records via CloudFlare
 In Cloudflare, setup domain and setup its records. Copy the records above, and since it is in Vercel, you don't really need to turn on CloudFlare proxy. Vercel is already protecting you.
